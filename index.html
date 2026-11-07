@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Before You Cart</title>
+<meta name="description" content="Get an impact receipt for what you are about to buy, and spot the sales tactics working on you. Rough estimates, shown as ranges. No trackers, no AI.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Before You Cart: need or nudge?">
+<meta property="og:description" content="Get an impact receipt for what you are about to buy, and spot the sales tactics working on you. Rough estimates, shown as ranges. No trackers, no AI.">
+<meta property="og:url" content="https://super-future-visions.github.io/before-you-cart/">
+<meta property="og:image" content="https://super-future-visions.github.io/before-you-cart/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://super-future-visions.github.io/before-you-cart/preview.png">
+
+<style>
+:root{--bg:#E6EEEA;--paper:#FFFFFF;--ink:#12302D;--mute:#4A625E;--line:#BCCBC6;--accent:#1F6F5C;--accent-ink:#FFFFFF;--warn:#A8321F;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D1A18;--paper:#162624;--ink:#E4EFEC;--mute:#9DB5B0;--line:#2C4440;--accent:#5CC4A8;--accent-ink:#0D1A18;--warn:#F08A76;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0D1A18;--paper:#162624;--ink:#E4EFEC;--mute:#9DB5B0;--line:#2C4440;--accent:#5CC4A8;--accent-ink:#0D1A18;--warn:#F08A76;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:720px;margin:0 auto;padding:28px 18px 56px}
+h1{font:700 clamp(2.2rem,8vw,3.6rem)/1.02 Georgia,"Iowan Old Style",serif;letter-spacing:-.02em;margin:8px 0 14px}
+h2{font:700 1.3rem/1.2 Georgia,serif;margin:0 0 12px}
+.lede{color:var(--mute);max-width:56ch;margin:0 0 28px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:20px}
+label{display:block;font-weight:600;margin:14px 0 6px}
+select,input[type=number]{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:520px){.row{grid-template-columns:1fr}}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg label{margin:0;font-weight:500}
+.seg input{position:absolute;opacity:0}
+.seg span{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:999px;cursor:pointer}
+.seg input:checked+span{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.seg input:focus-visible+span,select:focus-visible,input:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.receipt{font:15px/1.6 ui-monospace,"SF Mono",Menlo,Consolas,monospace;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px 20px 26px;position:relative;margin-bottom:20px;
+-webkit-mask:radial-gradient(circle 7px at 7px 100%,#0000 98%,#000) 0 0/14px 100% repeat-x;mask:radial-gradient(circle 7px at 7px 100%,#0000 98%,#000) 0 0/14px 100% repeat-x;-webkit-mask-composite:source-over}
+.receipt h2{font:700 1.05rem ui-monospace,Menlo,monospace;text-align:center;margin:0 0 4px}
+.receipt .sub{text-align:center;color:var(--mute);font-size:13px;margin-bottom:14px}
+.line{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.line b{text-align:right}
+.big{font-size:1.15rem}
+.conf{color:var(--mute);font-size:13px;margin-top:12px}
+.checks label{display:flex;gap:12px;align-items:flex-start;font-weight:500;margin:10px 0}
+.checks input{width:22px;height:22px;margin-top:3px;accent-color:var(--accent);flex:none}
+.verdict{border-left:6px solid var(--accent);padding:12px 16px;background:var(--bg);border-radius:0 8px 8px 0;margin-top:14px}
+.verdict.pause{border-color:var(--warn)}
+.verdict strong{display:block;font:700 1.2rem Georgia,serif;margin-bottom:4px}
+button{font:600 1rem system-ui,sans-serif;padding:12px 20px;border-radius:8px;border:0;background:var(--accent);color:var(--accent-ink);cursor:pointer;margin-top:14px}
+.soc{font:italic 1.1rem/1.45 Georgia,serif;margin:16px 0 0;color:var(--mute)}
+footer{font-size:14px;color:var(--mute)}
+footer p{margin:8px 0}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:8px;padding:10px 14px;background:var(--paper);color:var(--ink);margin:6px 0}
+
+.deep>summary{cursor:pointer;font:700 1.15rem/1.3 Georgia,"Iowan Old Style",serif}.deep[open]>summary{margin-bottom:12px}.deep>summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<h1>Before You Cart.</h1>
+<p class="lede"><strong>Need or nudge?</strong> Companies spend billions to make buying feel urgent. Take sixty seconds to see what this purchase really costs the planet, and whether you still want it.</p>
+
+<section class="card" aria-labelledby="s1">
+<h2 id="s1">What are you about to buy?</h2>
+<label for="item">Item</label>
+<select id="item"></select>
+<label for="mat">Main material</label>
+<select id="mat"></select>
+<label for="mat2">Blended with (optional)</label>
+<select id="mat2"></select>
+<div id="blendwrap" style="display:none"><label for="blend">Share of main material (%)</label><input id="blend" type="number" min="1" max="99" value="60" inputmode="numeric"></div>
+<div class="row">
+<div><label for="price">Price ($)</label><input id="price" type="number" min="0" step="1" value="60" inputmode="decimal"></div>
+<div><label for="qty">How many</label><input id="qty" type="number" min="1" max="50" step="1" value="1" inputmode="numeric"></div>
+<div><label for="wears">Times you’ll wear it</label><input id="wears" type="number" min="1" max="2000" step="1" value="10" inputmode="numeric"></div>
+</div>
+<label id="srcl">Where from</label>
+<div class="seg" role="radiogroup" aria-labelledby="srcl">
+<label><input type="radio" name="src" value="new" checked><span>Brand new</span></label>
+<label><input type="radio" name="src" value="used"><span>Secondhand or borrowed</span></label>
+</div>
+</section>
+
+<section class="receipt" aria-live="polite" aria-labelledby="rh">
+<h2 id="rh">IMPACT RECEIPT</h2>
+<div class="sub" id="rsub"></div>
+<div id="rlines"></div>
+<details class="conf"><summary>About these numbers</summary><p id="rconf" style="margin:6px 0 0"></p></details>
+</section>
+
+<section class="card" aria-labelledby="s3">
+<h2 id="s3">Do you need this?</h2>
+<div class="checks" id="checks"></div>
+<div class="verdict" id="verdict" role="status"></div>
+<p class="soc">And the bigger question: if this product didn’t exist, would we, as a society, miss it?</p>
+<button id="copy" type="button">Copy my receipt to share</button>
+<span id="copied" role="status" style="margin-left:10px;color:var(--mute)"></span>
+</section>
+
+<section class="card" id="tactics" aria-labelledby="th">
+<style>#adtext{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);resize:vertical}#adtext:focus-visible{outline:3px solid var(--accent);outline-offset:2px}#adout mark{background:transparent;color:inherit;border-bottom:3px solid var(--warn);font-weight:600}#adout sup{color:var(--warn);font-weight:700;margin-left:2px}.ad{white-space:pre-wrap;padding:14px;background:var(--bg);border-radius:8px;margin:14px 0}.tl{padding:12px 14px;border:1px solid var(--line);border-radius:8px;margin:10px 0}.tl p{margin:6px 0}.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);margin-left:8px}</style>
+<h2 id="th">Spot the sales tactics</h2>
+<p>Paste an ad, marketing email, or product page. We highlight common persuasion tactics by matching known phrases. It runs in your browser and sends nothing anywhere.</p>
+<label for="adtext">Paste text</label>
+<textarea id="adtext" rows="6" placeholder="Paste marketing copy here"></textarea>
+<button id="adgo" type="button">Find tactics</button><button id="adex" class="ghost" type="button">Try an example</button>
+<div id="adout" aria-live="polite"></div>
+</section>
+
+<section class="card" id="behind" aria-labelledby="bh">
+<h2 id="bh">Next: who’s behind what you buy?</h2>
+<p>Every purchase, and every AI prompt, runs on infrastructure owned by companies. <strong>Behind the Cart</strong> compares what the biggest tech companies report about the electricity behind AI and data centers, and shows what they don’t report.</p>
+<p><a href="https://super-future-visions.github.io/behind-the-cart/" style="color:var(--accent);font-weight:600">Open Behind the Cart</a></p>
+</section>
+
+<details class="card deep" id="method"><summary>How we calculate this, and how sure we are</summary>
+<style>#method table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}#method th,#method td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}#method details{margin:12px 0}#method summary{cursor:pointer;font-weight:600}.tw{overflow-x:auto}</style>
+
+<p>Impact = garment weight × the material’s impact per kilogram, plus an allowance for making and shipping. Buying secondhand counts as 10% of that, since the item already exists. We show ranges because real products vary.</p>
+<p><strong>Status of these numbers:</strong> sourcing is under way. The cotton and polyester rows now cite published studies, but those studies measure different stages (fiber, fabric, or a whole T-shirt), so figures aren’t directly comparable. Where a bound isn’t sourced yet, the Source column says so, and rows marked Pending are still working estimates. To compare materials on one basis, we treat fabric as fiber plus about 3–7 kg CO₂e per kg for spinning, weaving or knitting, dyeing and finishing, a range inferred from the cotton and polyester studies above. For materials with little published data (silk, cashmere, hemp, linen, acrylic, recycled cotton) we scaled values using one database’s ratios to its own cotton figure, because its absolute numbers run several times higher than the studies cited here, probably because of a different system boundary. Those rows have wide ranges and need the most thorough review, as does anything marked Low. Garment weights and making-and-shipping allowances are also our own estimates. Please don’t cite any of these figures yet.</p>
+<div class="tw"><table id="mt"></table></div>
+<div class="tw"><table id="it"></table></div>
+<details><summary>Why ranges and confidence labels, not one score</summary><p>Scoring materials is contested. In June 2022 the Norwegian Consumer Authority concluded that the consumer-facing use of the Higg Materials Sustainability Index was potentially misleading, and its owner paused that use globally. An independent review by KPMG later found the index could be prone to misinterpretation when used on its own, and the single score has since been retired. We take two lessons: show uncertainty openly, and never reduce a garment to one unexplained number.</p></details>
+<details><summary>What’s not included yet</summary><p>Washing, drying and ironing, disposal, packaging, returns, dyeing differences between factories, and brand-specific supply chains. Garment weights are typical values, not measurements of your item.</p></details>
+<details><summary>Where we’ll verify numbers</summary><p>Peer-reviewed lifecycle assessments, Textile Exchange materials reporting, brand and industry lifecycle disclosures, and Cascale’s Higg data with its known limits in mind. These are the planned source types, not yet applied to the figures above.</p></details>
+<p>Spot a mistake or have a better source? <a href="https://forms.gle/wSuz1Pqt26KxBCzD6" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:600">Challenge a number</a> (opens a short form in a new tab).</p>
+</details>
+<footer>
+<div class="badge" id="badge">Measuring this page…</div>
+<p><strong>About these numbers.</strong> They are rounded, category-level estimates drawn from published lifecycle assessments and industry reports, not measurements of a specific brand. Real products vary a lot with fabric, factory and shipping, which is why you see ranges. Treat this prototype as a conversation starter, and check the sources before relying on any figure.</p>
+<p>Everyday comparisons use about 60 liters of water per shower and about 0.25 kg CO₂e per kilometer driven in an average car.</p>
+</footer>
+</main>
+<script>
+var ITEMS=[
+{n:"T-shirt",kg:0.2,o:[1,3],m:0},
+{n:"Jeans",kg:0.7,o:[2,4],m:0},
+{n:"Sneakers",kg:0.8,o:[6,9],m:2},
+{n:"Dress",kg:0.4,o:[2,5],m:2},
+{n:"Sweater or knitwear",kg:0.5,o:[1.5,4],m:0},
+{n:"Jacket or coat",kg:1,o:[3,7],m:2},
+{n:"Hoodie or sweatshirt",kg:0.6,o:[2,5],m:0},
+{n:"Sweatpants or joggers",kg:0.5,o:[2,4],m:0},
+{n:"Leggings or activewear",kg:0.25,o:[1.5,3.5],m:4},
+{n:"Shorts",kg:0.3,o:[1.5,3.5],m:0},
+{n:"Skirt",kg:0.3,o:[1.5,4],m:2},
+{n:"Blouse or button-down shirt",kg:0.25,o:[1.5,4],m:0},
+{n:"Trousers or dress pants",kg:0.5,o:[2,5],m:2},
+{n:"Blazer or suit jacket",kg:0.9,o:[4,9],m:5},
+{n:"Pajamas",kg:0.35,o:[1.5,3.5],m:0},
+{n:"Swimsuit",kg:0.15,o:[1,3],m:4},
+{n:"Socks (pair)",kg:0.06,o:[0.3,1],m:0},
+{n:"Underwear",kg:0.06,o:[0.3,1],m:0},
+{n:"Scarf or beanie",kg:0.15,o:[0.5,1.5],m:5},
+{n:"Boots",kg:1.1,o:[8,12],m:8}];
+var MATS=[
+{n:"Cotton",w:[5700,11000],c:[5,9],q:"Medium",s:0,t:"A thirsty crop. Most of its water footprint is rainwater, but irrigation and pollution matter in some regions.",src:'Water: Hoekstra and Chapagain (2008), about 11,000 L per kg of finished cotton textile, mostly rainwater (<a href="https://oldiwp.indiawaterportal.org/sites/default/files/iwp2/WaterFootprint_Presentation_General.pdf" target="_blank" rel="noopener noreferrer">as cited here</a>). Crop-level data: <a href="https://hess.copernicus.org/articles/15/1577/2011/" target="_blank" rel="noopener noreferrer">Mekonnen and Hoekstra 2011</a>. The lower bound comes from a review table reporting about 5,730 L per kg of cotton fiber (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8044815/table/T3" target="_blank" rel="noopener noreferrer">PMC</a>) under a different water-use definition, so sources disagree. CO₂e: <a href="https://www.mdpi.com/1996-1073/17/2/312" target="_blank" rel="noopener noreferrer">5.3 kg per kg of fabric (Energies, 2024)</a> to 8.8–9.1 kg per kg of fabric (Cotton Incorporated LCA, 2012, US).'},
+{n:"Organic cotton",w:[3000,11000],c:[4,8],q:"Low",s:0,t:"Fewer pesticides. Water and carbon savings vary a lot by region, and recent studies have revised the numbers.",src:'Fiber stage: Textile Exchange’s 2014 LCA found 978 kg CO₂e per tonne of organic cotton fiber vs 1,808 for conventional, 46% lower (<a href="https://www.ajsosteniblebcn.cat/the-life-cycle-assessment-of-organic-cotton-fiber_38172.pdf" target="_blank" rel="noopener noreferrer">summary of findings</a>). A 2022 ifeu review found 2.3 vs 4.1 kg per kg of fiber under different assumptions (<a href="https://www.ifeu.de/fileadmin/uploads/ifeu_paper/IFEU_2022_-_Environmental_Footprints_of_Cotton_and_Cotton_Fibres_final.pdf" target="_blank" rel="noopener noreferrer">ifeu</a>). Our fabric-level range is cotton’s range minus about 1 kg, which is our own estimate. Water: blue water was 91% lower in the 2014 study, but it compared irrigated conventional cotton with mostly rain-fed organic, and ifeu found similar overall water footprints, so total water is not yet sourced. A 2026 Textile Exchange update revised some organic figures, for example US organic to 1.77 kg per kg of fiber, and needs a full review (<a href="https://www.carbonfact.com/blog/knowledge/carbon-footprint-cotton" target="_blank" rel="noopener noreferrer">summary</a>).'},
+{n:"Polyester",w:[100,300],c:[9,14],q:"Medium",s:1,t:"Needs little water but is made from fossil fuels and sheds microplastics in every wash.",src:'CO₂e: about 9.5 kg per kg of polyester product (Tekin et al., 2024, as cited in <a href="https://iwaponline.com/wst/article/92/5/704/109207/Life-cycle-assessment-of-a-textile-industry-for" target="_blank" rel="noopener noreferrer">Water Science and Technology</a>). The upper bound is not yet sourced. Textile Exchange’s 2025 polyester LCA stops at fiber formation, so it can’t be compared directly (<a href="https://textileexchange.org/news/new-lca-study-clarifies-environmental-impact-of-polyester/" target="_blank" rel="noopener noreferrer">summary</a>). Water: about 125 L per kg of fiber, fiber stage only (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8044815/table/T3" target="_blank" rel="noopener noreferrer">review table</a>).'},
+{n:"Recycled polyester",w:[50,200],c:[4,9],q:"Low",s:1,t:"Lower carbon than virgin, but still sheds microplastics and is rarely recycled again.",src:'Fiber stage only: recycled staple fiber about 3 kg CO₂e per kg, recycled chips about 0.7–2.2, higher where the power grid relies on coal (<a href="https://www.esgdive.com/news/why-recycled-polyester-not-solving-fashions-climate-waste-crisis-report/827940/" target="_blank" rel="noopener noreferrer">ESG Dive summary of the Textile Exchange LCA</a>). Our fabric-level range adds processing and is not yet sourced. Water: pending.'},
+{n:"Nylon",w:[100,400],c:[12,20],q:"Low",s:1,t:"Fossil-based with a high carbon footprint, and it sheds microplastics.",src:'CO₂e: polymer-level databases give about 9.1 kg per kg for nylon 6 (AusLCI) and 10.7 for nylon 6,6 (Oekobaudat) (<a href="https://www.climatiq.io/data/emission-factor/84045b13-6e77-4058-9683-9bb4077e8460" target="_blank" rel="noopener noreferrer">nylon 6</a>, <a href="https://www.climatiq.io/data/emission-factor/7dd9386d-58e7-4bb8-ab9f-c9f121255a7c" target="_blank" rel="noopener noreferrer">nylon 6,6</a>). Our fabric-level range adds spinning and processing, an assumption. Water: not yet sourced.'},
+{n:"Wool",w:[500,5000],c:[14,40],q:"Low",s:0,t:"Long-lasting, but sheep bring methane and land use. Estimates vary widely and experts dispute how to count biological carbon.",src:'CO₂e: a review of 14 studies found an average of 24.1 kg per kg of greasy wool, with individual values from 1.1 to 61.4 (<a href="https://8point9.com/when-lcas-include-the-sheep-wool-can-be-carbon-neutral/" target="_blank" rel="noopener noreferrer">summary</a>). A 2024 factory study found 14.1 kg per kg of wool fabric (<a href="https://www.mdpi.com/1996-1073/17/2/312" target="_blank" rel="noopener noreferrer">Energies</a>). Researchers dispute how to count biological carbon, which could lower these figures substantially. Water: not yet sourced.'},
+{n:"Viscose",w:[300,3000],c:[3,11],q:"Low",s:0,t:"Made from wood pulp. Check for deforestation risk and chemical processing.",src:'Fiber stage (data supplied by the producer Lenzing, 2010): water 319–445 L per kg and CO₂e from about −0.25 to 3.8 kg per kg, with Asian production higher (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8044815/table/T3" target="_blank" rel="noopener noreferrer">table in a review</a>). Our fabric-level range adds processing and is not yet sourced, and neither is the upper water bound. Wood sourcing and chemical processing matter but are not scored here.'},
+{n:"Linen",w:[700,1300],c:[4.5,8.5],q:"Low",s:0,t:"Flax needs little water and few chemicals. Often a durable, lower-impact fiber, but estimates are thin.",src:'Scaled estimate. One materials database lists linen at about 94% of its cotton carbon figure and 12% of its cotton water figure (<a href="https://www.carbonfact.com/materials/linen" target="_blank" rel="noopener noreferrer">linen</a>, <a href="https://www.carbonfact.com/materials/cotton" target="_blank" rel="noopener noreferrer">cotton</a>), which we applied to our cotton range. Its absolute values are several times higher than lifecycle studies for cotton, so we used only the ratios. An industry source cites about 1,000 L of water per kg of flax (<a href="https://www.safilin.fr/textile-fiber-for-sustainable-fashion/?lang=en" target="_blank" rel="noopener noreferrer">Safilin</a>).'},
+{n:"Leather",w:[8000,17000],c:[20,60],q:"Low",s:0,t:"Tied to cattle farming, so land, water and methane. Tanning adds chemicals. Results depend heavily on how impacts are shared with meat and milk.",src:'The Leather Working Group’s 2024 lifecycle study found 22.5 kg CO₂e per square meter of finished leather, 68% from cattle farming (<a href="https://www.leatherworkinggroup.com/fileadmin/user_upload/LWG_LCA_2024_Summary_.pdf" target="_blank" rel="noopener noreferrer">LWG summary</a>); our per-kg conversion is an estimate. Calf leather is listed at about 58.5 kg CO₂e and 8.2 m³ water per kg (<a href="https://www.carbonfact.com/materials/calf-bovine" target="_blank" rel="noopener noreferrer">calf bovine</a>), and a 2026 conference abstract reports up to 60 kg and 17 m³ (<a href="https://www.programmaster.org/PM/PM.nsf/ApprovedAbstracts/73FDB7B38BDE0EB185258CD6005DF9B7" target="_blank" rel="noopener noreferrer">abstract</a>). Allocation matters: the LWG study reports upstream impact up to four times lower than the EU default (<a href="https://www.carbonfact.com/blog/knowledge/leather-carbon-impact" target="_blank" rel="noopener noreferrer">summary</a>).'},
+{n:"Hemp",w:[1000,2700],c:[4,7.5],q:"Low",s:0,t:"Fast-growing and low in pesticides. Processing (retting) can use a lot of water.",src:'Scaled estimate: a materials database lists hemp at about 84% of its cotton carbon figure and 19% of its cotton water figure (<a href="https://www.carbonfact.com/materials/hemp" target="_blank" rel="noopener noreferrer">hemp</a>); a 2015 University of Twente thesis estimated about 2,700 L per kg of hemp textile (<a href="https://www.utwente.nl/en/et/wem/education/msc-thesis/2015/averink.pdf" target="_blank" rel="noopener noreferrer">thesis</a>).'},
+{n:"Lyocell (Tencel)",w:[30,300],c:[5,10],q:"Low",s:0,t:"Made from wood pulp in a mostly closed-loop process. Check that the wood is responsibly sourced.",src:'Fiber stage: about 2.1–3.2 kg CO₂e per kg in the producer Lenzing’s claim sheets (<a href="https://b2b.tencel.com/images/assets/claims/document/claim-proof-tencel-lyocell-fiber-snapshot-202401.pdf" target="_blank" rel="noopener noreferrer">2024</a>, <a href="https://a.storyblok.com/f/311928/x/4a448795a2/claim-proof-tencel-lyocell-fiber-snapshot.pdf" target="_blank" rel="noopener noreferrer">2025</a>), and water use of about 31 L per kg in one sheet versus 263 L in a 2010 review table (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8044815/table/T3" target="_blank" rel="noopener noreferrer">table</a>). Our fabric-level range adds assumed processing. Producer-supplied data.'},
+{n:"Silk",w:[14700,95000],c:[6,65],q:"Low",s:0,t:"Sources disagree enormously. Raising silkworms and reeling are energy- and water-intensive.",src:'Sources disagree sharply. Ecobalyse figures reported by Carbonfact give about 6.1 kg CO₂e and 14.7 m³ water per kg (<a href="https://www.carbonfact.com/blog/research/carbon-tunnel" target="_blank" rel="noopener noreferrer">blog</a>), while Carbonfact’s material page lists about 222 kg CO₂e and 1,253 m³ per kg (<a href="https://www.carbonfact.com/materials/silk" target="_blank" rel="noopener noreferrer">silk</a>), about 8 times its cotton figures. We show the spread, scaled for the upper end.'},
+{n:"Cashmere",w:[32000,62000],c:[100,210],q:"Low",s:0,t:"Goat grazing drives very high estimates, and overgrazing degrades land. Recycled cashmere is far lower.",src:'Extreme and uncertain. One database lists about 684 kg CO₂e and 809 m³ water per kg, roughly 23 and 6 times its cotton figures (<a href="https://www.carbonfact.com/materials/cashmere-wool" target="_blank" rel="noopener noreferrer">cashmere</a>), while another public database removed cashmere as an extreme outlier (<a href="https://www.carbonfact.com/blog/research/carbon-tunnel" target="_blank" rel="noopener noreferrer">blog</a>). We scaled those ratios to our cotton range.'},
+{n:"Acrylic",w:[500,1500],c:[9,16],q:"Low",s:1,t:"Fossil-based wool alternative. It sheds microplastics and is hard to recycle.",src:'Our own estimate. One database ranks acrylic among the more carbon-intensive synthetics, listing 27 kg CO₂e and 16.5 m³ water per kg, about as high as its cotton figures (<a href="https://www.carbonfact.com/materials/acrylic" target="_blank" rel="noopener noreferrer">acrylic</a>), but those absolute values are not comparable to the studies above. We placed acrylic at or above polyester.'},
+{n:"Recycled cotton",w:[500,1000],c:[3,5.5],q:"Low",s:0,t:"Avoids growing new cotton, but fibers are shorter and often blended with other fibers.",src:'Scaled estimate: one database lists recycled cotton at about 61% of its virgin cotton carbon figure and 9% of its water figure (<a href="https://www.carbonfact.com/materials/cotton" target="_blank" rel="noopener noreferrer">cotton</a>).'}];
+var CHECKS=[
+{t:"I can picture at least 30 occasions to use it.",g:true},
+{t:"I don’t own anything that does the same job.",g:true},
+{t:"I wanted it before I saw the ad, the sale or the countdown.",g:true},
+{t:"I’ve already waited 24 hours and still want it.",g:true},
+{t:"I looked for it secondhand, or could borrow it.",g:true}];
+var $=function(i){return document.getElementById(i)};
+var sel=$("item");
+ITEMS.map(function(it,i){return {n:it.n,i:i}}).sort(function(a,b){return a.n.localeCompare(b.n)}).forEach(function(x){var o=document.createElement("option");o.value=x.i;o.textContent=x.n;sel.appendChild(o)});sel.value=0;
+var cb=$("checks");
+CHECKS.forEach(function(c,i){var l=document.createElement("label");var x=document.createElement("input");x.type="checkbox";x.id="c"+i;x.addEventListener("change",render);l.appendChild(x);l.appendChild(document.createTextNode(c.t));cb.appendChild(l)});
+function fmt(n){return n>=1000?Math.round(n/100)*100:Math.round(n)}
+function num(id,d){var v=parseFloat($(id).value);return isFinite(v)&&v>0?v:d}
+var last="";
+function render(){
+var it=ITEMS[+sel.value],qty=Math.round(num("qty",1)),wears=num("wears",1),price=num("price",0);
+var used=document.querySelector("input[name=src]:checked").value==="used";
+var k=used?0.1:1;
+var m1=MATS[+$("mat").value],m2=$("mat2").value==="-"?null:MATS[+$("mat2").value];
+$("blendwrap").style.display=m2?"block":"none";
+var sh=m2?Math.min(99,Math.max(1,num("blend",60)))/100:1;
+function mx(key,i){return m1[key][i]*sh+(m2?m2[key][i]*(1-sh):0)}
+var w0=mx("w",0)*it.kg*qty*k,w1=mx("w",1)*it.kg*qty*k,c0=(mx("c",0)*it.kg+it.o[0])*qty*k,c1=(mx("c",1)*it.kg+it.o[1])*qty*k;
+var micro=(m1.s*sh+(m2?m2.s*(1-sh):0))>0,conf=(m1.q==="Low"||(m2&&m2.q==="Low"))?"Low":"Medium";
+var tot=wears*qty;
+var mid=(c0+c1)/2,midw=(w0+w1)/2;
+var rows=[
+["Water used",fmt(w0)+"–"+fmt(w1)+" L"],
+["That’s about",Math.round(w0/60)+"–"+Math.round(w1/60)+" showers"],
+["Greenhouse gases",c0.toFixed(c0<10?1:0)+"–"+c1.toFixed(c1<10?1:0)+" kg CO₂e"],
+["That’s about",Math.round(c0/0.25)+"–"+Math.round(c1/0.25)+" km driven"],
+["Per wear",(mid/tot).toFixed(2)+" kg CO₂e"],
+["Cost per wear","$"+(price*qty/tot).toFixed(2)]];
+if(micro)rows.splice(4,0,["Microplastics","shed every wash"]);
+$("rsub").textContent=qty+" × "+(m2?Math.round(sh*100)+"% "+m1.n.toLowerCase()+" / "+Math.round((1-sh)*100)+"% "+m2.n.toLowerCase():m1.n.toLowerCase())+" "+it.n.toLowerCase()+(used?" (secondhand)":" (new)");
+$("rlines").innerHTML=rows.map(function(r,i){return '<div class="line'+(i<1||i==2?' big':'')+'"><span>'+r[0]+'</span><b>'+r[1]+'</b></div>'}).join("");
+$("rconf").textContent=m1.n+": "+m1.t+(m2?" "+m2.n+": "+m2.t:"")+" "+(used?"Secondhand assumes about 10% of the new footprint, since the item already exists. ":"")+"Covers materials, making and shipping, not washing or disposal. Data confidence: "+conf+".";
+var yes=0;CHECKS.forEach(function(c,i){if($("c"+i).checked)yes++});
+var v=$("verdict"),msg,ttl;
+var answered=yes;
+if(wears<30&&!used){ttl="Pause. ";msg="You expect to wear it "+wears+" times. Items worn fewer than about 30 times carry the most impact per wear."}
+else{ttl="";msg=""}
+if(yes>=4){v.className="verdict";v.innerHTML="<strong>"+ttl+"Looks like a considered buy.</strong>"+(msg||"You have good reasons. Buy quality, and plan to wear it for years.")}
+else if(yes>=2){v.className="verdict pause";v.innerHTML="<strong>"+ttl+"Wait a few days.</strong>"+(msg||"Put it in your cart, close the tab, and come back in 24 hours. Many urges fade.")}
+else{v.className="verdict pause";v.innerHTML="<strong>"+ttl+"Pause on this one.</strong>"+(msg||"Urgency, scarcity and sales are designed to rush you. If the want is still there next week, it’s real.")}
+last="My impact receipt: "+qty+" × "+it.n.toLowerCase()+(used?" (secondhand)":" (new)")+"\nWater: "+fmt(w0)+"–"+fmt(w1)+" L ("+Math.round(w0/60)+"–"+Math.round(w1/60)+" showers)\nGreenhouse gases: "+c0.toFixed(0)+"–"+c1.toFixed(0)+" kg CO₂e\nPer wear: "+(mid/tot).toFixed(2)+" kg CO₂e\nMy verdict: "+v.firstChild.textContent;
+}
+var mt=$("mat"),mt2=$("mat2");
+mt2.innerHTML='<option value="-">None</option>';
+MATS.map(function(m,i){return {n:m.n,i:i}}).sort(function(a,b){return a.n.localeCompare(b.n)}).forEach(function(x){[mt,mt2].forEach(function(s){var o=document.createElement("option");o.value=x.i;o.textContent=x.n;s.appendChild(o)})});
+mt.value=ITEMS[0].m;
+sel.addEventListener("input",function(){mt.value=ITEMS[+sel.value].m});
+["item","mat","mat2","blend","price","qty","wears"].forEach(function(i){$(i).addEventListener("input",render)});
+Array.prototype.forEach.call(document.querySelectorAll("input[name=src]"),function(r){r.addEventListener("change",render)});
+$("copy").addEventListener("click",function(){
+try{navigator.clipboard.writeText(last).then(function(){$("copied").textContent="Copied."},function(){$("copied").textContent="Couldn’t copy. Select the receipt text instead."})}
+catch(e){$("copied").textContent="Couldn’t copy. Select the receipt text instead."}});
+try{var kb=Math.max(1,Math.round(new Blob([document.documentElement.outerHTML]).size/1024));
+$("badge").textContent="This page: about "+kb+" KB, no trackers, no ads, no AI calls, no outside requests.";}catch(e){$("badge").textContent="This page: no trackers, no ads, no AI calls, no outside requests."}
+(function(){
+var t=$("mt"),h='<tr><th>Material</th><th>Water (L per kg)</th><th>CO₂e (kg per kg)</th><th>Confidence</th><th>Source</th></tr>';
+MATS.forEach(function(m){h+='<tr><td>'+m.n+'</td><td>'+m.w[0]+'–'+m.w[1]+'</td><td>'+m.c[0]+'–'+m.c[1]+'</td><td>'+m.q+(m.q==="Low"?" – needs thorough review":"")+'</td><td>'+(m.src||"Pending")+'</td></tr>'});
+t.innerHTML=h;
+var g='<tr><th>Item</th><th>Typical weight (kg)</th><th>Making and shipping (kg CO₂e)</th></tr>';
+ITEMS.forEach(function(i){g+='<tr><td>'+i.n+'</td><td>'+i.kg+'</td><td>'+i.o[0]+'–'+i.o[1]+'</td></tr>'});
+$("it").innerHTML=g;})();
+var TR=[
+{k:"Fake urgency",re:/\b(last chance|today only|ends (tonight|today|soon|midnight)|hurry|act now|final hours?|limited[- ]time|flash sale|don['’]t wait|expires?( soon| tonight)?|countdown|while it lasts)\b/gi,w:"Deadlines push you to decide before you can think. Many sales repeat, and countdown timers are often reset.",a:"Would I still want this at the same price next week?"},
+{k:"Artificial scarcity",re:/\b(only \d+ (left|remaining)|(almost|nearly) (gone|sold out)|selling (out )?fast|low stock|limited[- ]edition|while supplies last|few (left|remaining)|sold out|limited drop)\b/gi,w:"Making something seem rare makes it feel more valuable. Stock warnings online are not always real, or relevant to you.",a:"Is this actually rare, or only made to feel that way?"},
+{k:"Fear of missing out",re:/\b(don['’]t miss( out)?|miss out|you['’]ll regret|before (it['’]s|they['’]re) gone|left behind|fall(ing)? behind|fomo|don['’]t be the only)\b/gi,w:"This taps the fear of losing out or being left behind, which is a stronger motivator than the wish to gain something.",a:"What do I actually lose if I skip this?"},
+{k:"Social proof and hype",re:/\b(best[- ]?sell(er|ing)|top[- ]rated|fan[- ]favou?rite|everyone['’]s (buying|wearing|talking about)|everyone is (buying|wearing|talking about)|going viral|viral|trending|as seen on|\d+ (people|others) (are )?(viewing|looking|bought))\b/gi,w:"We copy what others seem to be doing. “Bestseller” can mean best-selling in a tiny category, and “people viewing” counters may not be real.",a:"Do I want this, or do I want what everyone else seems to want?"},
+{k:"Newness treadmill",re:/\b(new arrivals?|just dropped|new drop|new collection|new season|latest (drop|collection|trend)|this season['’]s|new in)\b/gi,w:"Constant “new” makes what you already own feel outdated. Fast fashion depends on this cycle.",a:"Is my current version actually worn out, or just no longer new?"},
+{k:"Discount pressure",re:/\b(\d{1,2}% off|up to \d{1,2}% off|save up to|was \$\d+|compare at|extra \d{1,2}% off|sale|clearance|markdown|doorbuster)\b/gi,w:"A crossed-out price anchors your sense of value. Saving money on something you didn’t plan to buy is still spending money.",a:"Would I buy this at the sale price if I had never seen the original?"},
+{k:"Emotional spending",re:/\b(treat yourself|you deserve( it)?|you['’]ve earned( it)?|guilt[- ]free|indulge|self[- ]care|reward yourself)\b/gi,w:"Shopping is framed as a reward or as self-care, which links buying to feeling good about yourself.",a:"What do I actually need right now, and could something else meet it?"},
+{k:"Manufactured need",re:/\b(must[- ]haves?|wardrobe essentials?|essentials?|staples?|can['’]t live without|game[- ]changer|elevate your|upgrade your|your new (favou?rite|go-to))\b/gi,w:"Words like “essential” and “must-have” turn a want into a need. Few clothes are truly essential.",a:"Do I own something that already does this job?"},
+{k:"Basket-building nudges",re:/\bfree shipping[^.!?\n]{0,30}\d+|\b(spend \$\d+|add \$\d+( more)?|buy (one|1|2|two|3) get( one| 1)?|\d for \$\d+|bundle( and save)?|2 for 1)\b/gi,w:"Thresholds and bundles encourage you to add items to reach a goal, so you spend more than you planned.",a:"Would I buy each item on its own?"},
+{k:"Exclusivity and loyalty hooks",re:/\b(members[- ]only|vip|early access|exclusive( offer| access| drop)?|invite[- ]only|reward points|earn points|loyalty)\b/gi,w:"Status and points make you feel special and bring you back, building a habit of buying.",a:"Am I buying because I need it, or to keep my status or points?"},
+{k:"Vague green claims",re:/\b(eco[- ]?friendly|sustainabl[ey]( sourced| made)?|green|conscious(ly)?|natural|planet[- ]friendly|earth[- ]friendly|clean|responsibl[ey]( sourced| made)?|ethical(ly)?( made| sourced)?|low[- ]impact|carbon[- ]neutral|net[- ]zero|climate[- ]positive|plastic[- ]free|biodegradable|compostable|circular|(kind|good) (to|for) the planet)\b/gi,w:"General words like “eco-friendly” or “conscious” don’t say what is better, or compared with what. Regulators such as the US FTC advise against broad, unqualified environmental claims.",a:"What exactly is better, by how much, and who verified it?"}];
+var GI=10,SPEC=/\d+\s?%|GOTS|OEKO-TEX|Fairtrade|bluesign|B Corp|Cradle to Cradle|FSC|Higg|SBTi|third[- ]party|certified|verified/i;
+var EXAMPLE="Last chance! Our bestselling eco-friendly Everyday Hoodie is almost gone, only 3 left. Take 40% off today only, plus free shipping on orders over $75. Treat yourself, you deserve it. Made with sustainably sourced, planet-friendly cotton. Don’t miss out.";
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function scan(){
+var t=$("adtext").value,out=$("adout");
+if(!t.trim()){out.innerHTML="<p>Paste some text first.</p>";return}
+var hits=[];
+TR.forEach(function(r,i){var re=new RegExp(r.re.source,"gi"),m;while((m=re.exec(t))){hits.push({s:m.index,e:m.index+m[0].length,r:i});if(m[0].length===0)re.lastIndex++}});
+hits.sort(function(a,b){return a.s-b.s||b.e-a.e});
+var keep=[],end=-1;hits.forEach(function(h){if(h.s>=end){keep.push(h);end=h.e}});
+var used={};keep.forEach(function(h){used[h.r]=(used[h.r]||0)+1});
+var order=Object.keys(used).map(Number).sort(function(a,b){return a-b}),num={};
+order.forEach(function(r,i){num[r]=i+1});
+var html="",p=0;
+keep.forEach(function(h){html+=esc(t.slice(p,h.s))+"<mark>"+esc(t.slice(h.s,h.e))+"<sup>"+num[h.r]+"</sup></mark>";p=h.e});
+html+=esc(t.slice(p));
+if(!keep.length){out.innerHTML="<p>No common tactics found. That doesn’t mean the text is neutral: this tool only checks for known phrases.</p>";return}
+var s="<p><strong>"+order.length+" tactic"+(order.length>1?"s":"")+" found in "+keep.length+" phrase"+(keep.length>1?"s":"")+".</strong> Numbers in the text match the list below.</p><div class=\"ad\">"+html+"</div>";
+order.forEach(function(r){var x=TR[r];s+='<div class="tl"><strong>'+num[r]+". "+x.k+"</strong> ("+used[r]+")<p>"+x.w+"</p><p><em>Ask yourself:</em> "+x.a+"</p><p><em>You might see:</em> “"+XS[r]+"”</p>";
+if(r===GI)s+="<p>"+(SPEC.test(t)?"This text includes some specifics. Check that they come from a named, independent source.":"No numbers or certifications appear in this text. Look for specifics before trusting these claims.")+"</p>";
+s+="</div>"});
+s+='<p class="conf">This tool matches common phrases, so it can miss tactics and sometimes flags harmless wording. Use it to prompt questions, not as a verdict.</p>';
+out.innerHTML=s}
+$("adgo").addEventListener("click",scan);
+var XS=["Only 10 minutes left to grab this deal!","Only 3 left at this price, almost gone.","Don’t miss out, everyone is getting one.","The viral bestseller everyone is talking about.","Just dropped: the new collection is here.","40% off today only, was $80, now $48.","Treat yourself, you deserve it.","The one wardrobe essential you can’t live without.","Free shipping when you spend $75, or buy 2 get 1 free.","VIP members get early access to the drop.","Our planet-friendly, eco-friendly collection."];
+var EXS=[EXAMPLE,"POV: you finally found the serum everyone is obsessed with. It went viral and it's selling out fast, only 12 left. Use my code for 30% off, ends at midnight. Clean, natural ingredients. Your skin deserves this. Link in bio.","Get ready with me in the new drop. This is the viral set trending everywhere, a wardrobe essential, honestly a game-changer. Flash sale: buy 2 get 1 free, countdown is live. Members only get early access. Don't miss out.","Ok this is your sign. This sustainable, eco-friendly bottle changed my life. Everyone is buying it. Only 5 left at this price, hurry. Free shipping when you spend $50. You've earned it, treat yourself."],ei=0;
+$("adex").addEventListener("click",function(){$("adtext").value=EXS[ei%EXS.length];ei++;scan();$("adout").insertAdjacentHTML("afterbegin","<p class='conf'>Composite example based on common short-video ad patterns. It is not a real ad or brand.</p>")});
+render();
+</script>
+</body>
+</html>
